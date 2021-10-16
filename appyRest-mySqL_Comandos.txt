@@ -1,0 +1,55 @@
+--------------------------by Caliche--------------------------
+------------------------INICIAR SERVER------------------------
+
+// creacion package.json
+
+npm init -yes
+
+// crear app.js
+//A continuación, instale Express en el directorio myapp y guárdelo en la lista de dependencia
+npm install express
+//Importar bibliotecas para iniciar el servidor
+const express = require('express')
+const app = express();
+const port = 3000
+
+  
+  app.listen(port,function server() {
+    console.log("Server running on port: " + port);
+    console.log(`Example app listening at http://localhost:${port}`)
+  })
+//Correr server
+node app.js
+// en package.json
+//agregar a scripts
+"start": "nodemon app.js"
+//con esto se corre el servidor con:
+npm start
+----------------------------nodemon------------------------------
+//Automatizar server para que sereiniie cada ves que haceos cambios en la configuracion
+npm i nodemon --dev
+--------------------------ENDPOINTS-------------------------------
+//en app.js
+app.get('/get-service', function getService(req,res) {
+  res.send('OK');
+})
+//req = resive una respuesta del cliente; res = envia una respuesta alcliente
+// '/get-service' es el end point
+
+-----------------------------Postman------------------------------
+//Para probar apis https://www.postman.com/downloads/
+//Desde postman se envia un archivo jason atraves de el body al localhost
+//en app.js de configura el envio y recibido del archivo json
+app.post('/add-service',(req,res)=>{
+  console.log(req.body)
+  res.json(req.body)
+})
+
+-------------------------DEFINIR MIDLEWARS------------------------
+// Configurar el servidor para recibir datos como json
+app.use(express.json());
+
+
+
+
+
